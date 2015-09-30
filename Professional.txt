@@ -1,0 +1,181 @@
+			The entries in any table cant be deleted. They can only be marked "Inactive"
+
+AuditClass: This is a helpful for every all updates made by users. Fields are 
+				1)UpdatedClassName 
+				2) UpdatedUserId
+				3) UpdatedField
+				
+				
+LocationGroups: Group of locations that can have more than 1 type of locations grouped together. 
+				1) LocationGroup
+				2) LocationGroupDetails
+				
+Possible value of LocationGroup:
+
+				1) Religious
+				2) Adventure Sport
+				3) Museums
+				4) Sports 
+				5) Trials
+				6) Parks
+				7) Natural Locations
+				8) Party places
+				9) National Significance
+				10) Adventure Sports
+				11) Stadiums
+				12) Shopping
+
+				
+LocationType: Describes the type of location. Each location has unique 
+
+				0) Active/Inactive 
+				1) Icon.png/Icon.jpg 
+				2) Name of Location Type 
+				3) LocationGroup
+
+Possible values of Locations
+				1) Hindu Temple			-	Religious
+				2) Mosque				-	Religious
+				3) Church				- 	Religious
+				4) Gurdwarah			-	Religious
+				5) Amusement Parks		-	Parks
+				6) Historical Museum 	-	Museums
+				7) Art Museum			-	Museums
+				8) Bowling Alleys		-	Sports Bars
+				9) Table Tennis			-	Sports Bars
+				10) pool Tables			-	Sports Bars
+				11) Cricket grounds		-	Stadiums
+				12) Tennis courts		- 	Stadiums
+				13) Boating				-	Parks
+				14) Rafting				-	Parks
+				15) Amusement Parks		- 	Parks
+				16) Water Parks			-	Parks
+				17) Childrens Parks		-	Parks
+				18) Zoo					- 	Parks
+				19) Aquariums			-	Parks
+				20) Sailing				-	Parks
+				21) Walk Trials			-	Trials
+				22) Bike Trials 		-	Trials
+				23) trekking			- 	Trials
+				24)	Hill Stations		- 	Natural Locations
+				25) Water Falls			-	Natural Locations
+				26) Lakes				- 	Natural Locations
+				27) River				- 	Natural Locations
+				28) Creeks				-	Natural Locations
+				29) Desert				-	Natural Locations
+				30) Mountains			-	Natural Locations
+				31) Beaches				-	Natural Locations
+				32) Canyons				-	Natural Locations
+				33) Night Clubs			-	Party Places
+				34) National Monuments	-	National Significance
+				35) Malls				-	Shopping
+				36) Fairs				-	Shopping
+				
+				
+LocationsClass: List of All locations with 
+
+				0) ActiveStatus (Active/Inactive )
+				1) LocationId
+				2) LocationTitle
+				3) SimpleDescription 
+				4) Geocode 
+				5) MainPhoto 
+				6) LocationDetailsObjectId 
+				7) CreatedUserObjectId
+				8) LocationType. 
+
+				
+TempLocationsClass: 	Same as LocationsClass, except that they are not validated by Admin. Will not be shown to other users unless validation is complete. 
+				0) Active/Inactive 
+				1) Location Title 
+				2) Simple description 
+				3) Geo Code 
+				4) Main photo 
+				5) Details object id 
+				6) SuggestedUserId 
+				7) LocationType
+				8) LocationGroup
+			
+
+LocationDetailsClass: Details of Location from the LocationsClass. This class has all the details about any location. This in conjunction with LocationClass provides all 
+						information about any location. 
+				0) Active/Inactive 
+				1) ObjectId from LocationClass. 
+				2) Detail Description
+				3) Year Built
+				4) Best Time(s) to View
+				5) Approximate Cost to Visit:
+				6) isHandicapFriendly?
+				7) ChildrenFriendly?
+				9) IsFoodNearBy
+				10) OpenYearRound?
+				11) IsAnnualEvent
+				12) hours of operation
+				13) IsIndoor
+				14) IsParkingAvailable
+				15) IsPublicTransportationAvailable
+				16) Address
+				17) City
+				18) State
+				19) Country
+				20) ContactPhone
+				21) emailContact
+				22) WebAddress
+				23) External Links/references:
+				
+				
+LocationDetailsClass: Temp table of LocationDetailsClass, when user information is not validated. Till validation is not complete, only 1 photo can be uploaded. 
+
+LocationAdditionalPhotos: This class has details about list of all photos for all the locations. 
+				0) Active/Inactive
+				1) LocationId
+				2) photoId
+				
+
+TempLocationAdditionalPhotos: This Temp class has details about list of all photos for all the locations before its validated, once validated the entries will move 
+								to LocationAdditionalPhotos table.
+				0) Active/Inactive
+				1) LocationId
+				2) photoId
+				
+UserLocationLikes: This table has the like of a user from for all the locations. 
+				1) LocationId
+				2) userId
+				
+
+UserPhotosAtLocation: This table has all the photos of a user for a given location. There is a limit of X photos from the free APP, and can have more photos limit from the 
+					paid App.
+					1) Photo Name
+					2) Description
+					3) UserId
+					4) LocationId
+					5) Date of photo taken
+
+UserWishList: This Table has the list of all the location wishes of a user. Once a user has visited a location, the entry from the wish list could be removed.
+					1) userId
+					2) LocationId
+
+
+UserVisitedLocations: This table has the list of all the locations that a user already visited. When a location is updated in this table, and if the entry was there in the wish 
+					list, its indicated in this table. 
+					1) UserId
+					2) VisitDate
+					3) LocationId
+					4) WasEarlierInWishList
+					
+		
+
+UserFutureVisitingLocations: This table has entries of the future planned visits of a user.
+					1) UserId
+					2) LocationId
+					3) VisitingDate
+					
+
+UserFriendSuggestions: This table has list of suggested entries from a friend to another friend. A friend can suggest a location, and another friend can like it, 
+					dislike it or just thank for the location suggestion. 
+					1) SuggestingUserId
+					2) SuggestedToUser
+					3) ViewedBySuggestedUser
+					4) liked, disliked or thanked. (0 for dislike, 1 for like and 2 for thanks). 
+					
+
